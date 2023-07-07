@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+    /* background: black; */
+    /* color: aliceblue; */
+   }
+   
+   .main {
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    height: 500px;
+    border: 1px solid red;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 80px;
+    margin: auto;
+    margin-top: 200px;
+   }
+   
+   .sender_receiver {
+    display: flex;
+    gap: 90px;
+    margin-bottom: 150px;
+   }
+   
+   .sender {
+    margin-top: 90px;
+   }
+   
+   .receiver {
+    margin-top: 90px;
+   }
+   
+   .query {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+   }
+   
+   .query input[type="text"] {
+    width: 300px;
+   }
+   
+   .btn {
+    width: 100px;
+   }
+   
+   .btn:hover {
+    cursor: pointer;
+   }

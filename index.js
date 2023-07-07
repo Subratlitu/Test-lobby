@@ -18,20 +18,20 @@ const http = require('http');
 const server = http.createServer(app);
 const io = new Server(server);
 const port = 5000;
-
+app.use(express.static('public'));
 app.get('/', (req, res) => {
-	res.sendFile(__dirname + '/f2.html');
+	res.sendFile(__dirname + '/f3.html');
 });
 
 
 
 io.on('connection', (socket) => {
-	socket.on('send name', (username) => {
+	socket.on('sendname', (username) => {
         console.log({username})
 		io.emit('send name', (username));
 	});
 
-	socket.on('send message', (chat) => {
+	socket.on('getaalldata', (chat) => {
 		io.emit('send message', (chat));
 	});
 });

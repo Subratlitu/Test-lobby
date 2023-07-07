@@ -38,7 +38,9 @@
          id="messageArea">
     </div>
 </body>
-<script src="/socket.io/socket.io.js"></script>
+<!-- <script src="/socket.io/socket.io.js"></script> -->
+<script src="https://cdn.socket.io/4.1.2/socket.io.js"></script>
+
 <script>
     let socket = io();
   
@@ -57,14 +59,16 @@
         }
     });
   
-    socket.on("send name", (username) => {
-        let name = document.createElement("p");
-        name.style.backgroundColor = "grey";
-        name.style.width = "100%";
-        name.style.textAlign = "center";
-        name.style.color = "white";
-        name.textContent = username + ":";
-        messageArea.appendChild(name);
+    socket.on("sendname", (userobj) => {
+
+        console.log({userobj})
+        // let name = document.createElement("p");
+        // name.style.backgroundColor = "grey";
+        // name.style.width = "100%";
+        // name.style.textAlign = "center";
+        // name.style.color = "white";
+        // name.textContent = username + ":";
+        // messageArea.appendChild(name);
     });
   
     socket.on("send message", (chat) => {

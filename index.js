@@ -18,6 +18,7 @@ const http = require('http');
 const server = http.createServer(app);
 const io = new Server(server);
 const port = 5000;
+const model = require("./script");
 app.use(express.static('public'));
 app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/f3.html');
@@ -26,13 +27,15 @@ app.get('/', (req, res) => {
 
 
 io.on('connection', (socket) => {
-	socket.on('sendname', (username) => {
+	socket.on('sendname', (postData) => {
         console.log({username})
+		model.saveData(postData.sender,postData.receiver,postData.query);
 		io.emit('send name', (username));
 	});
 
-	socket.on('getaalldata', (chat) => {
-		io.emit('send message', (chat));
+	socket.on('getaalldata', async (chat) => {
+		let messages = await model.getData()
+		io.emit('send message', (messages));
 	});
 });
 

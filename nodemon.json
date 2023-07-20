@@ -1,0 +1,13 @@
+{
+    "ignore": [
+    "node_modules/*",
+    "logs/*"
+    ],
+    "env": {
+    "NODE_ENV": "local",
+    "PORT": 5000,
+    "MONGO_URI": "mongodb://dev:gopaisa69@139.59.95.136:19501/gopaisa",
+    "MONGO_URI_DEV": "mongodb://dev:gopaisa69@139.59.95.136:19501/gopaisa",
+    "NODE_SERVER":"http://localhost:5000"
+    }
+}

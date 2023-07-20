@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="style.css">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+</head>
+<body>
+    <div class="content">
+        <div>
+            <p>Welcome to Chat App</p>
+            <form id="verify-form" method="post">
+                <input type="text" id="username" placeholder="Enter your Name" class="username" name="username" required>
+                <input type="text" id="email" placeholder="Enter your Email" class="email" name="email" required>
+                <input type="submit" id="verify" value="Enter">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $("#verify-form").on("submit", function(event) {
+      event.preventDefault(); // Prevent the default form submission
+      let username = $('#username').val();
+      let email = $('#email').val();
+      let data = {
+        username: username,
+        email: email
+      };
+      
+      if (!username || !email) {
+        window.alert("Missing Fields");
+      } else {
+        $.ajax({
+          type: "POST",
+          url: "/room",
+          data: data,
+          success: function(data) {
+          console.log("AJAX request successful");
+           window.location.href = `/room?username=${data.username}&email=${email}`;
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.log("An error occurred:", textStatus, errorThrown);
+            if (jqXHR.status === 404) {
+              console.log("API endpoint not found");
+              // Handle the 404 response here
+            } else {
+              console.log("Other error occurred");
+              // Handle other errors if needed
+            }
+          }
+        });
+      }
+    });
+  });
+</script>
